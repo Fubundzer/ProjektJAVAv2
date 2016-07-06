@@ -6,12 +6,12 @@ package com.myapp;
 import java.util.Vector;
 import java.util.Scanner;
 
-public class Plyta {
-    String autor, tytul, gatunek;
+public abstract class Plyta {
+    String autor, tytul, gatunek,rodzaj;
     int ilosc_p, data;
     Vector<Piosenka> lista = new Vector<Piosenka>();
     //public:
-    Plyta(String a, String t,String g, int ip, int d) //throws InterruptedException
+    /*Plyta(String a, String t,String g, int ip, int d) //throws InterruptedException
     {
         autor = a;
         tytul = t;
@@ -29,7 +29,7 @@ public class Plyta {
                 Thread.currentThread().interrupt();
             }
         }
-    }
+    }*/
 
     Piosenka dodawanie() throws InterruptedException
     {
@@ -86,14 +86,6 @@ public class Plyta {
         System.out.println("Dlugosc plyty to: "+czas / 60+"MIN "+czas % 60+"SEK");
         return czas;
     };
-    void disp()
-    {
-
-    };
-    Vector<Piosenka> modyfikacjalisty()
-    {
-        return lista;
-    };
     void modl(int i, Piosenka a)
     {
         //	lista[i] = a;
@@ -143,65 +135,136 @@ public class Plyta {
         return ilosc_p;
     }
 
-    void typmenu()
+
+    void setAutor(String a)
     {
-        System.out.println("");
-    };
-	/*int wyszukiwanie()
-	{
-		int i=1;
-		Scanner input=new Scanner(System.in);
-		while (i != 0)
-		{
-			//system("cls");
-			System.out.println("Wybierz kategorie wyszukiwania.");
-			System.out.println("1. Autor.");
-			System.out.println("2. Tytul.");
-			System.out.println("3. Gatunek.");
-			System.out.println("4. Rok wydania.");
-			System.out.println("5. Ilosc piosenek.");
-			System.out.println("6. Minimalna dlugosc.");
-			System.out.println("0. Zakoncz wyszukiwanie.");
-			i=input.nextInt();
-			return i;
+        this.autor=a;
+    }
+
+    void setTytul(String t)
+    {
+        this.tytul=t;
+    }
+
+    void setGatunek(String g)
+    {
+        this.gatunek=g;
+    }
+    void setIlosc_p(int ip)
+    {
+        this.ilosc_p=ip;
+    }
+
+    void setData(int d)
+    {
+        this.data=d;
+    }
+
+    void disp()
+    {
+        System.out.println("Autor plyty: "+autor);
+        System.out.println("Tytul plyty: "+tytul);
+        System.out.println("Rok wydania: "+data);
+        System.out.println("Gatunek: "+gatunek);
+        System.out.println("Rodzaj: "+rodzaj);
+        System.out.println("Ilosc piosenek: "+ilosc_p);
+        dlugosc();
+    }
+    /*Plyta modyfikacja()
+    {
+        Plyta b = this;
+        String a;
+        Scanner input = new Scanner(System.in);
+        int i = 1;
+        while (i != 0)
+        {
+            //system("cls");
+            System.out.println("Modyfikowanie albumu. Wybierz jedna z ponizszych opcji.");
+            System.out.println("1. Modyfikacja autora plyty.");
+            System.out.println("2. Modyfikacja tytulu plyty.");
+            System.out.println("3. Modyfikacja roku wydania plyty.");
+            System.out.println("4. Modyfikacja gatunku plyty.");
+            System.out.println("5. Modyfikacja listy piosenek.");
+            System.out.println("0. Zakoncz modyfikacje.");
+            i=input.nextInt();
 			/*if (cin.fail())
 			{
 				getZnakError();
 				Sleep(1000);
 				cin.clear();
 				cin.sync();
-			}*/
-    //else
-			/*
-				switch (i)
-				{
-				case 1:
-					return i;
-					//break;
-				case 2:
-					return i;
-					//break;
-				case 3:
-					return i;
-					//break;
-				case 4:
-					return i;
-					//break;
-				case 5:
-					return i;
-					//break;
-				case 6:
-					return i;
-					//break;
-				case 0:
-					return i;
-					//break;
-				default:
-					//getZlaOpcja();
-					//Sleep(1000);
-					break;
-				}
+			}
+			else
+			{
+            switch (i){
+                case 1:
+                    System.out.println("Wprowadz nowego autora plyty:");
+                    //cin.sync();
+                    //getline(cin, a);
+                    a=input.nextLine();
+                    b.autor = a;
+                    //Sleep(1000);
+                    //system("cls");
+                    break;
+                case 2:
+                    System.out.println("Wprowadz nowy tytul plyty:");
+                    //cin.sync();
+                    //getline(cin, tytul);
+                    tytul=input.nextLine();
+                    b.tytul = tytul;
+                    //Sleep(1000);
+                    //system("cls");
+                    break;
+                case 3:
+                    System.out.println("Wprowadz nowy rok wydania plyty:");
+                    data=input.nextInt();
+					/*while (cin.fail())
+					{
+						getZnakError();
+						Sleep(1000);
+						cin.clear();
+						cin.sync();
+						cout << "Wprowadz nowy rok wydania plyty:" << endl;
+						cin >> data;
+					}
+                    b.data = data;
+                    //Sleep(1000);
+                    //system("cls");
+                    break;
+                case 4:
+                    System.out.println("Wprowadz nowy gatunek plyty:");
+                    //cin.sync();
+                    //getline(cin, a);
+                    a=input.nextLine();
+                    b.gatunek = a;
+                    //Sleep(1000);
+                    //system("cls");
+                    break;
+                case 5:
+                    b.lista = modyfikacjalisty();
+                    //Sleep(1000);
+                    //system("cls");
+                    break;
+                case 0:
+                    System.out.println("Powrot do menu.");
+                    //Sleep(1000);
+                    //system("cls");
+                    break;
+                default:
+                    //getZlaOpcja();
+                    //Sleep(1000);
+                    //system("cls");
+                    break;
+            }
+        }
 
-		}
-	};*/
+        return b;
+    }*/
+    abstract Plyta modyfikacja();
+    abstract Boolean dlplyty();
+    abstract void typmenu();
+    abstract Vector<Piosenka> modyfikacjalisty();
+    abstract String getRodzaj();
+    abstract void setLista();
+
 }

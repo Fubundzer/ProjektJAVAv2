@@ -10,6 +10,7 @@ public class Katalog {
 
     Vector <Plyta> dane;
     String typ;
+    PlytaFactory factory = new PlytaFactory();
 
     Katalog(Vector <Plyta> dane,String typ)
     {
@@ -171,11 +172,12 @@ public class Katalog {
     //template <class TYP>
     Katalog wstawianietab()
     {
+        Scanner input = new Scanner(System.in);
         int i, j;
-        Plyta tab;
+        Plyta tab[];
         System.out.println("Ile albumow chcesz wstawic?");
-        cin >> i;
-        while (cin.fail())
+        i=input.nextInt();
+        /*while (cin.fail())
         {
             getZnakError();
             Sleep(1000);
@@ -183,62 +185,61 @@ public class Katalog {
             cin.sync();
             cout << "Ile albumow chcesz wstawic?" << endl;
             cin >> i;
-        }
-        tab = new TYP[i];
+        }*/
+        tab = new Plyta[i];
         for (j = 0; j < i; j++)
         {
-            tab[j] = dodawaniavec<TYP>();
+            tab[j] = dodawaniavec();
         }
         for (j = 0; j < i; j++)
         {
-            dane.push_back(tab[j]);
+            dane.add(tab[j]);
         }
-        delete[] tab;
-        tab = NULL;
-        return *this;
+        return this;
     }
 
 
     //	template <class TYP>
-    TYP Katalog<TYP>::get_value(int i)
+    Plyta get_value(int i)
     {
-        return dane[i];
+        return dane.get(i);
     }
 
     //	template <class TYP>
-    void Katalog<TYP>::mod(TYP d, int a)
+    void mod(Plyta d, int a)
     {
-        dane[a - 1] = d;
+        //dane[a - 1] = d;
+        dane.set(a-1,d);
     }
 
     //	template <class TYP>
-    int Katalog<TYP>::dlugosc()
+    int dlugosc()
     {
         return dane.size();
     }
 
     //	template <class TYP>
-    void Katalog<TYP>::display()
+    void display()
     {
         for (int i = 0; i < dane.size(); i++)
         {
-            cout << i + 1 << ". ";
-            dane[i].disp();
+            System.out.print((i + 1)+". ");
+            dane.get(i).disp();
         }
     }
 
     //	template <class TYP>
-    Katalog<TYP> Katalog<TYP>::operator +(const Katalog<TYP> & d)
+    /*Katalog<TYP> Katalog<TYP>::operator +(const Katalog<TYP> & d)
     {
         for (int i = 0; i < d.dlugosc(); i++)
         {
             dane[i] = dodawaniavec<TYP>(d.get_value(i));
         }
         return *this;
-    }
+    }*/
 
     //	template <class TYP>
-    void Katalog<TYP>::zapis()
+   /* void Katalog<TYP>::zapis()
     {
         string nazwa = dane[0].get_r() + ".txt";
         string nazwa2 = dane[0].get_r() + "listap.txt";
@@ -301,127 +302,124 @@ public class Katalog {
                 dane.push_back(b);
             }
         }
-    }
+    }*/
 
     //	template <class TYP>
-    void Katalog<TYP>::wszysukiwaniek()
+    void wszysukiwaniek()
     {
-        string a;
-        int r, j;
-        switch (dane[0].wyszukiwanie()){
-            case 1:
-                cout << "Wprowadz autora." << endl;
-                cin >> a;
-                for (j = 0; j < dane.size(); j++)
-                {
-                    if (dane[j].get_autor() == a)
-                    {
-                        cout << j + 1 << ". ";
-                        dane[j].disp();
+        Scanner input = new Scanner(System.in);
+        String a;
+        int r, j,i=1;
+        while(i!=0) {
+            System.out.println("Wybierz kategorie wyszukiwania.");
+            System.out.println("1. Autor.");
+            System.out.println("2. Tytul.");
+            System.out.println("3. Gatunek.");
+            System.out.println("4. Rok wydania.");
+            System.out.println("5. Ilosc piosenek.");
+            System.out.println("6. Minimalna dlugosc.");
+            System.out.println("0. Zakoncz wyszukiwanie.");
+            i=input.nextInt();
+            switch (i) {
+                case 1:
+                    System.out.println("Wprowadz autora.");
+                    a=input.nextLine();
+                    for (j = 0; j < dane.size(); j++) {
+                        if (dane.get(0).get_autor() == a) {
+                            System.out.print((j + 1)+". ");
+                            dane.get(j).disp();
+                        }
                     }
-                }
-                Sleep(1000);
-                break;
-            case 2:
-                cout << "Wprowadz tytul." << endl;
-                cin >> a;
-                for (j = 0; j < dane.size(); j++)
-                {
-                    if (dane[j].get_tytul() == a)
-                    {
-                        cout << j + 1 << ". ";
-                        dane[j].disp();
+                    //Sleep(1000);
+                    break;
+                case 2:
+                    System.out.println("Wprowadz tytul.");
+                    a=input.nextLine();
+                    for (j = 0; j < dane.size(); j++) {
+                        if (dane.get(j).get_tytul() == a) {
+                            System.out.print((j + 1)+". ");
+                            dane.get(j).disp();
+                        }
                     }
-                }
-                Sleep(1000);
-                break;
-            case 3:
-                cout << "Wprowadz gatunek." << endl;
-                cin >> a;
-                for (j = 0; j < dane.size(); j++)
-                {
-                    if (dane[j].get_gatunek() == a)
-                    {
-                        cout << j + 1 << ". ";
-                        dane[j].disp();
+                    //Sleep(1000);
+                    break;
+                case 3:
+                    System.out.println("Wprowadz gatunek.");
+                    a=input.nextLine();
+                    for (j = 0; j < dane.size(); j++) {
+                        if (dane.get(j).get_gatunek() == a) {
+                            System.out.print((j + 1)+". ");
+                            dane.get(j).disp();
+                        }
                     }
-                }
-                Sleep(1000);
-                break;
-            case 4:
-                cout << "Wprowadz rok." << endl;
-                cin >> r;
-                while (cin.fail())
-                {
-                    getZnakError();
-                    Sleep(1000);
-                    cin.clear();
-                    cin.sync();
-                    cout << "Wprowadz rok." << endl;
-                    cin >> r;
-                }
-                for (j = 0; j < dane.size(); j++)
-                {
-                    if (dane[j].get_rok() == r)
-                    {
-                        cout << j + 1 << ". ";
-                        dane[j].disp();
+                    //Sleep(1000);
+                    break;
+                case 4:
+                    System.out.println("Wprowadz rok.");
+                    r=input.nextInt();
+                    /*while (cin.fail()) {
+                        getZnakError();
+                        Sleep(1000);
+                        cin.clear();
+                        cin.sync();
+                        cout << "Wprowadz rok." << endl;
+                        cin >> r;
+                    }*/
+                    for (j = 0; j < dane.size(); j++) {
+                        if (dane.get(j).get_rok() == r) {
+                            System.out.print((j + 1)+". ");
+                            dane.get(j).disp();
+                        }
                     }
-                }
-                Sleep(1000);
-                break;
-            case 5:
-                cout << "Wprowadz ilosc piosenek." << endl;
-                cin >> r;
-                while (cin.fail())
-                {
-                    getZnakError();
-                    Sleep(1000);
-                    cin.clear();
-                    cin.sync();
-                    cout << "Wprowadz ilosc piosenek." << endl;
-                    cin >> r;
-                }
-                for (j = 0; j < dane.size(); j++)
-                {
-                    if (dane[j].get_iloscp() == r)
-                    {
-                        cout << j + 1 << ". ";
-                        dane[j].disp();
+                    //Sleep(1000);
+                    break;
+                case 5:
+                    System.out.println("Wprowadz ilosc piosenek.");
+                    r=input.nextInt();
+                    /*while (cin.fail()) {
+                        getZnakError();
+                        Sleep(1000);
+                        cin.clear();
+                        cin.sync();
+                        cout << "Wprowadz ilosc piosenek." << endl;
+                        cin >> r;
+                    }*/
+                    for (j = 0; j < dane.size(); j++) {
+                        if (dane.get(j).get_iloscp() == r) {
+                            System.out.print((j + 1)+". ");
+                            dane.get(j).disp();
+                        }
                     }
-                }
-                Sleep(1000);
-                break;
-            case 6:
-                cout << "Wprowadz minimalna dlugosc plyty (MIN)." << endl;
-                cin >> r;
-                while (cin.fail())
-                {
-                    getZnakError();
-                    Sleep(1000);
-                    cin.clear();
-                    cin.sync();
-                    cout << "Wprowadz minimalna dlugosc plyty (MIN)." << endl;
-                    cin >> r;
-                }
-                for (j = 0; j < dane.size(); j++)
-                {
-                    if (dane[j].get_dlugosc() >= r * 60)
-                    {
-                        cout << j + 1 << ". ";
-                        dane[j].disp();
+                    //Sleep(1000);
+                    break;
+                case 6:
+                    System.out.println("Wprowadz minimalna dlugosc plyty (MIN).");
+                    r=input.nextInt();
+                    /*while (cin.fail()) {
+                        getZnakError();
+                        Sleep(1000);
+                        cin.clear();
+                        cin.sync();
+                        cout << "Wprowadz minimalna dlugosc plyty (MIN)." << endl;
+                        cin >> r;
+                    }*/
+                    for (j = 0; j < dane.size(); j++) {
+                        if (dane.get(j).get_dlugosc() >= r * 60) {
+                            System.out.print((j + 1)+". ");
+                            dane.get(j).disp();
+                        }
                     }
-                }
-                Sleep(1000);
-                break;
-            case 0:
-                cout << "Zakonczono wyszukiwanie.";
-                Sleep(1000);
-                break;
-            default:
-                getZlaOpcja();
-                Sleep(1000);
-                break;
+                    //Sleep(1000);
+                    break;
+                case 0:
+                    System.out.println("Zakonczono wyszukiwanie.");
+                    //Sleep(1000);
+                    break;
+                default:
+                    //getZlaOpcja();
+                    //Sleep(1000);
+                    break;
+            }
         }
     }
 
@@ -465,43 +463,49 @@ public class Katalog {
 			cout << "Wprowadz rok wydania plyty." << endl;
 			cin >> data;
 		}*/
-        Plyta a= new Plyta(autor,tytul,gatunek,ilosc_p,data);
+        Plyta a= factory.makePlyta(typ);
+        a.setAutor(autor);
+        a.setTytul(tytul);
+        a.setGatunek(gatunek);
+        a.setIlosc_p(ilosc_p);
+        a.setData(data);
         return a;
     }
 
-    template <class T> T dodawaniavec(T a)
+   /* template <class T> T dodawaniavec(T a)
     {
         return a;
-    }
+    }*/
 
-    template <class T> void domenu()
+    void domenu()
     {
-        T a;
+        Plyta a = factory.makePlyta(typ);
         a.typmenu();
     }
 
-    template <class T> Katalog<T> menu(Katalog <T> dane)
+    Katalog menu(Katalog catalog)
     {
+        Scanner input=new Scanner(System.in);
         int a = 1;
         int b = 1;
-        T x;
+        Plyta x;
         while (a != 0)
         {
-            domenu<T>();
-            cout << "1. Dodaj plyte." << endl;
-            cout << "2. Usun plyte." << endl;
-            cout << "3. Wyczysc katalog." << endl;
-            cout << "4. Zmien informacje na temat plyty." << endl;
-            cout << "5. Wstaw plyte w konretne miejsce." << endl;
-            cout << "6. Wstaw dwie lub wiecej plyt." << endl;
-            cout << "7. Wyszukiwanie plyt." << endl;
-            cout << "8. Zapisz baze katalogu." << endl;
-            cout << "9. Wczytaj baze katalogu." << endl;
-            cout << "10. Wyswietl informacje o plytach." << endl;
-            cout << "0. Powrot do menu." << endl;
+            domenu();
+            System.out.println("1. Dodaj plyte.");
+            System.out.println("2. Usun plyte.");
+            System.out.println("3. Wyczysc katalog.");
+            System.out.println("4. Zmien informacje na temat plyty.");
+            System.out.println("5. Wstaw plyte w konretne miejsce.");
+            System.out.println("6. Wstaw dwie lub wiecej plyt.");
+            System.out.println("7. Wyszukiwanie plyt.");
+            System.out.println("8. Zapisz baze katalogu.");
+            System.out.println("9. Wczytaj baze katalogu.");
+            System.out.println("10. Wyswietl informacje o plytach.");
+            System.out.println("0. Powrot do menu.");
 
-            cin >> a;
-            if (cin.fail())
+            a=input.nextInt();
+            /*if (cin.fail())
             {
                 getZnakError();
                 Sleep(1000);
@@ -510,57 +514,62 @@ public class Katalog {
             }
             else
             {
-                system("cls");
+                system("cls");*/
                 switch (a)
                 {
                     case 1:
-                        dane + dodawaniavec<T>();
-                        Sleep(1000);
-                        system("cls");
+                        //dane + dodawaniavec<T>();
+                        //dane.add(dodawaniavec());
+                        catalog.dane.add(dodawaniavec());
+                        //Sleep(1000);
+                        //system("cls");
                         break;
                     case 2:
-                        dane.display();
-                        dane = dane.usuwanie();
-                        system("cls");
+                        catalog.display();
+                        catalog=catalog.usuwanie();
+                        //dane = dane.usuwanie();
+                        //this=this.usuwanie();
+                        //system("cls");
                         break;
                     case 3:
-                        dane = dane.czyszczenie();
-                        system("cls");
+                        //dane = dane.czyszczenie();
+                        catalog=catalog.czyszczenie();
+                        //system("cls");
                         break;
                     case 4:
-                        dane.display();
-                        cout << "Ktory album chcesz modyfikowac?" << endl;
-                        cin >> b;
-                        while (cin.fail() || b>dane.dlugosc()||b<1)
+                        catalog.display();
+                        System.out.println("Ktory album chcesz modyfikowac?");
+                        b=input.nextInt();
+                        while (b>catalog.dlugosc()||b<1)
                         {
-                            getZnakDlError();
-                            Sleep(1000);
-                            cin.clear();
-                            cin.sync();
-                            cout << "Ktory album chcesz modyfikowac?";
-                            cin >> b;
+                            //getZnakDlError();
+                            //Sleep(1000);
+                            //cin.clear();
+                            //cin.sync();
+                            System.out.println("Ktory album chcesz modyfikowac?");
+                            b=input.nextInt();
                         }
-                        dane.mod(dane.get_value(b - 1).modyfikacja(), b);
-                        Sleep(1000);
-                        system("cls");
+                        catalog.mod(catalog.get_value(b - 1).modyfikacja(), b);
+                        //Sleep(1000);
+                        //system("cls");
                         break;
                     case 5:
-                        dane.display();
-                        dane.wstawianie();
-                        Sleep(1000);
-                        system("cls");
+                        catalog.display();
+                        catalog.wstawianie();
+                        //Sleep(1000);
+                        //system("cls");
                         break;
                     case 6:
-                        dane.wstawianietab();
-                        Sleep(1000);
-                        system("cls");
+                        catalog.wstawianietab();
+                        //Sleep(1000);
+                        //system("cls");
                         break;
                     case 7:
-                        dane.wszysukiwaniek();
-                        Sleep(1000);
-                        system("cls");
+                        catalog.wszysukiwaniek();
+                        //Sleep(1000);
+                        //system("cls");
                         break;
-                    case 8:
+                    /*case 8:
                         dane.zapis();
                         Sleep(1000);
                         system("cls");
@@ -569,24 +578,24 @@ public class Katalog {
                         dane.odczyt();
                         Sleep(3000);
                         system("cls");
-                        break;
+                        break;*/
                     case 10:
-                        dane.display();
-                        Sleep(3000);
-                        system("cls");
+                        catalog.display();
+                        //Sleep(3000);
+                        //system("cls");
                         break;
                     case 0:
                         break;
                     default:
-                        getZlaOpcja();
-                        Sleep(1000);
-                        system("cls");
+                        //getZlaOpcja();
+                        //Sleep(1000);
+                        //system("cls");
                         break;
                 }
             }
-            system("cls");
+            //system("cls");
+        return catalog;
         }
-
-        return dane;
-    }
 }
+
+

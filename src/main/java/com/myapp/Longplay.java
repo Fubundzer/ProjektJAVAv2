@@ -9,7 +9,14 @@ import java.util.Scanner;
 public class Longplay extends Plyta{
 
     String r = "Longplay";
-    //Longplay(){};
+    Longplay()
+    {
+        autor="";
+        tytul="";
+        gatunek="";
+        ilosc_p=0;
+        data=0;
+    };
 
     Longplay(String a, String t,String g, int ip, int d) //throws InterruptedException
     {
@@ -52,17 +59,6 @@ public class Longplay extends Plyta{
     }
 
     //virtual void disp();
-
-    void disp()
-    {
-        System.out.println("Autor plyty: "+autor);
-        System.out.println("Tytul plyty: "+tytul);
-        System.out.println("Rok wydania: "+data);
-        System.out.println("Gatunek: "+gatunek);
-        System.out.println("Rodzaj: "+r);
-        System.out.println("Ilosc piosenek: "+ilosc_p);
-        dlugosc();
-    }
 
     Longplay modyfikacja()
     {
@@ -155,9 +151,9 @@ public class Longplay extends Plyta{
         return b;
     }
 
-    String get_r()
+    String getRodzaj()
     {
-        return r;
+        return rodzaj;
     }
 
     //bool operator ==(const Longplay &l);
