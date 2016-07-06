@@ -8,7 +8,8 @@ import java.util.Scanner;
 
 public class Longplay extends Plyta{
 
-    String r = "Longplay";
+
+
     Longplay()
     {
         autor="";
@@ -16,6 +17,7 @@ public class Longplay extends Plyta{
         gatunek="";
         ilosc_p=0;
         data=0;
+        rodzaj="Longplay";
     };
 
     Longplay(String a, String t,String g, int ip, int d) //throws InterruptedException
@@ -36,6 +38,7 @@ public class Longplay extends Plyta{
                 Thread.currentThread().interrupt();
             }
         }*/
+        rodzaj="Longplay";
         setLista(ip);
     }
 
@@ -47,6 +50,7 @@ public class Longplay extends Plyta{
         ilosc_p = ip;
         data = d;
         lista=v;
+        rodzaj="Longplay";
     }
 
     Longplay(Longplay longplay)
@@ -57,15 +61,17 @@ public class Longplay extends Plyta{
         ilosc_p = longplay.ilosc_p;
         data = longplay.data;
         lista = longplay.lista;
+        rodzaj="Longplay";
     }
 
     //virtual void disp();
 
     Longplay modyfikacja()
     {
-        Longplay b = this;
+        //Longplay b = this;
         String a;
         Scanner input = new Scanner(System.in);
+        Scanner input2 = new Scanner(System.in);
         int i = 1;
         while (i != 0)
         {
@@ -92,8 +98,8 @@ public class Longplay extends Plyta{
                     System.out.println("Wprowadz nowego autora plyty:");
                     //cin.sync();
                     //getline(cin, a);
-                    a=input.nextLine();
-                    b.autor = a;
+                    a=input2.nextLine();
+                    this.autor = a;
                     //Sleep(1000);
                     //system("cls");
                     break;
@@ -101,8 +107,8 @@ public class Longplay extends Plyta{
                     System.out.println("Wprowadz nowy tytul plyty:");
                     //cin.sync();
                     //getline(cin, tytul);
-                    tytul=input.nextLine();
-                    b.tytul = tytul;
+                    tytul=input2.nextLine();
+                    this.tytul = tytul;
                     //Sleep(1000);
                     //system("cls");
                     break;
@@ -118,7 +124,7 @@ public class Longplay extends Plyta{
 						cout << "Wprowadz nowy rok wydania plyty:" << endl;
 						cin >> data;
 					}*/
-                    b.data = data;
+                    this.data = data;
                     //Sleep(1000);
                     //system("cls");
                     break;
@@ -126,13 +132,13 @@ public class Longplay extends Plyta{
                     System.out.println("Wprowadz nowy gatunek plyty:");
                     //cin.sync();
                     //getline(cin, a);
-                    a=input.nextLine();
-                    b.gatunek = a;
+                    a=input2.nextLine();
+                    this.gatunek = a;
                     //Sleep(1000);
                     //system("cls");
                     break;
                 case 5:
-                    b.lista = modyfikacjalisty();
+                    this.lista = modyfikacjalisty();
                     //Sleep(1000);
                     //system("cls");
                     break;
@@ -149,12 +155,7 @@ public class Longplay extends Plyta{
             }
         }
 
-        return b;
-    }
-
-    String getRodzaj()
-    {
-        return rodzaj;
+        return this;
     }
 
     //bool operator ==(const Longplay &l);
@@ -274,14 +275,18 @@ public class Longplay extends Plyta{
 
     void setLista(int i)
     {
+        int j;
         if(dlplyty(i))
         {
 
         }
         else
         {
-            ilosc_p++;
-            lista.addElement(dodawanie());
+            for(j=0;j<i;j++)
+            {
+                ilosc_p++;
+                lista.addElement(dodawanie());
+            }
         }
     }
 

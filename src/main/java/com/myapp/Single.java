@@ -10,7 +10,6 @@ package com.myapp;
 
 public class Single extends Plyta{
 
-    String r = "Single";
     Single()
     {
         autor="";
@@ -18,6 +17,7 @@ public class Single extends Plyta{
         gatunek="";
         ilosc_p=0;
         data=0;
+        rodzaj="Single";
     };
 
     Single(String a, String t, String g, int ip, int d) //throws InterruptedException
@@ -38,6 +38,7 @@ public class Single extends Plyta{
                 Thread.currentThread().interrupt();
             }
         }*/
+        rodzaj="Single";
         setLista(ip);
     }
 
@@ -49,6 +50,7 @@ public class Single extends Plyta{
         ilosc_p = ip;
         data = d;
         lista=v;
+        rodzaj="Single";
     }
 
     Single(Single s)
@@ -59,15 +61,16 @@ public class Single extends Plyta{
         ilosc_p = s.ilosc_p;
         data = s.data;
         lista = s.lista;
+        rodzaj="Single";
     }
 
     //virtual void disp();
 
     Single modyfikacja()
     {
-        Single b = this;
         String a;
         Scanner input = new Scanner(System.in);
+        Scanner input2 = new Scanner(System.in);
         int i = 1;
         while (i != 0)
         {
@@ -94,8 +97,8 @@ public class Single extends Plyta{
                     System.out.println("Wprowadz nowego autora plyty:");
                     //cin.sync();
                     //getline(cin, a);
-                    a=input.nextLine();
-                    b.autor = a;
+                    a=input2.nextLine();
+                    this.autor = a;
                     //Sleep(1000);
                     //system("cls");
                     break;
@@ -103,8 +106,8 @@ public class Single extends Plyta{
                     System.out.println("Wprowadz nowy tytul plyty:");
                     //cin.sync();
                     //getline(cin, tytul);
-                    tytul=input.nextLine();
-                    b.tytul = tytul;
+                    tytul=input2.nextLine();
+                    this.tytul = tytul;
                     //Sleep(1000);
                     //system("cls");
                     break;
@@ -120,7 +123,7 @@ public class Single extends Plyta{
 						cout << "Wprowadz nowy rok wydania plyty:" << endl;
 						cin >> data;
 					}*/
-                    b.data = data;
+                    this.data = data;
                     //Sleep(1000);
                     //system("cls");
                     break;
@@ -128,13 +131,13 @@ public class Single extends Plyta{
                     System.out.println("Wprowadz nowy gatunek plyty:");
                     //cin.sync();
                     //getline(cin, a);
-                    a=input.nextLine();
-                    b.gatunek = a;
+                    a=input2.nextLine();
+                    this.gatunek = a;
                     //Sleep(1000);
                     //system("cls");
                     break;
                 case 5:
-                    b.lista = modyfikacjalisty();
+                    this.lista = modyfikacjalisty();
                     //Sleep(1000);
                     //system("cls");
                     break;
@@ -151,7 +154,7 @@ public class Single extends Plyta{
             }
         }
 
-        return b;
+        return this;
     }
 
     String getRodzaj()
@@ -281,14 +284,18 @@ public class Single extends Plyta{
 
     void setLista(int i)
     {
+        int j;
         if(dlplyty(i))
         {
             System.out.println("Ten rodzaj plyty moze zawierac maksymalnie 5 piosenek i trwać 15 min.");
         }
         else
         {
-            ilosc_p++;
-            lista.addElement(dodawanie());
+            for(j=0;j<i;j++)
+            {
+                ilosc_p++;
+                lista.addElement(dodawanie());
+            }
         }
     }
 

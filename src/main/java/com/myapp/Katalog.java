@@ -8,7 +8,7 @@ import java.util.Vector;
 
 public class Katalog {
 
-    Vector <Plyta> dane;
+    Vector <Plyta> dane=new Vector<Plyta>();
     String typ;
     PlytaFactory factory = new PlytaFactory();
 
@@ -214,7 +214,7 @@ public class Katalog {
     void mod(Plyta d, int a)
     {
         //dane[a - 1] = d;
-        dane.set(a-1,d);
+        dane.set(a,d);
     }
 
     //	template <class TYP>
@@ -313,6 +313,7 @@ public class Katalog {
     void wszysukiwaniek()
     {
         Scanner input = new Scanner(System.in);
+        Scanner input2 = new Scanner(System.in);
         String a;
         int r, j,i=1;
         while(i!=0) {
@@ -328,9 +329,9 @@ public class Katalog {
             switch (i) {
                 case 1:
                     System.out.println("Wprowadz autora.");
-                    a=input.nextLine();
+                    a=input2.nextLine();
                     for (j = 0; j < dane.size(); j++) {
-                        if (dane.get(0).get_autor() == a) {
+                        if (dane.get(j).get_autor().equals(a)) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
@@ -339,9 +340,9 @@ public class Katalog {
                     break;
                 case 2:
                     System.out.println("Wprowadz tytul.");
-                    a=input.nextLine();
+                    a=input2.nextLine();
                     for (j = 0; j < dane.size(); j++) {
-                        if (dane.get(j).get_tytul() == a) {
+                        if (dane.get(j).get_tytul().equals(a)) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
@@ -350,9 +351,9 @@ public class Katalog {
                     break;
                 case 3:
                     System.out.println("Wprowadz gatunek.");
-                    a=input.nextLine();
+                    a=input2.nextLine();
                     for (j = 0; j < dane.size(); j++) {
-                        if (dane.get(j).get_gatunek() == a) {
+                        if (dane.get(j).get_gatunek().equals(a)) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
@@ -432,6 +433,7 @@ public class Katalog {
     Plyta dodawaniavec()
     {
         Plyta a= factory.makePlyta(typ);
+        a.getRodzaj();
         Scanner input = new Scanner(System.in);
         String autor, tytul,gatunek;
         int ilosc_p, data,i=0;
@@ -477,7 +479,7 @@ public class Katalog {
         a.setAutor(autor);
         a.setTytul(tytul);
         a.setGatunek(gatunek);
-        a.setIlosc_p(ilosc_p);
+        a.setLista(ilosc_p);
         a.setData(data);
         return a;
     }
@@ -530,7 +532,8 @@ public class Katalog {
                     case 1:
                         //dane + dodawaniavec<T>();
                         //dane.add(dodawaniavec());
-                        catalog.dane.add(dodawaniavec());
+                      //  Plyta cos = dodawaniavec();
+                        catalog.dane.addElement(dodawaniavec());
                         if(catalog.dane.get(dane.size()-1).dlplyty(catalog.dane.get(dane.size()-1).get_iloscp()))
                         {
                             dane.remove(dane.size()-1);
@@ -563,7 +566,7 @@ public class Katalog {
                             System.out.println("Ktory album chcesz modyfikowac?");
                             b=input.nextInt();
                         }
-                        catalog.mod(catalog.get_value(b - 1).modyfikacja(), b);
+                        catalog.mod(catalog.get_value(b - 1).modyfikacja(), b-1);
                         //Sleep(1000);
                         //system("cls");
                         break;

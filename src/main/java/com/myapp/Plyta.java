@@ -185,7 +185,11 @@ public abstract class Plyta {
     abstract Boolean dlplyty(int i);
     abstract void typmenu();
     abstract Vector<Piosenka> modyfikacjalisty();
-    abstract String getRodzaj();
+    String getRodzaj()
+    {
+        System.out.println(rodzaj) ;
+        return rodzaj;
+    };
     abstract void setLista(int i);
     abstract void dlPlytyBlad(int i);
 

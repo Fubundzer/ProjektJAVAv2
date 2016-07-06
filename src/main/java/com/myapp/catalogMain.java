@@ -17,6 +17,10 @@ public class catalogMain extends JFrame{
         Scanner input = new Scanner(System.in);
 
         int a = 1;
+        //Plyta hehe=new Longplay("cos","cos","cos",2,2000);
+        //hehe.getRodzaj();
+
+
         while (a != 0)
         {
             //system("cls");
