@@ -3,13 +3,15 @@ package com.myapp;
 /**
  * Created by Michał on 06.07.2016.
  */
-import java.util.Vector;
+
 import java.util.Scanner;
+import java.util.Vector;
 
-public class Longplay extends Plyta{
 
-    String r = "Longplay";
-    Longplay()
+public class ExtendedPlay extends Plyta{
+
+    String r = "Extended Play";
+    ExtendedPlay()
     {
         autor="";
         tytul="";
@@ -18,7 +20,7 @@ public class Longplay extends Plyta{
         data=0;
     };
 
-    Longplay(String a, String t,String g, int ip, int d) //throws InterruptedException
+    ExtendedPlay(String a, String t,String g, int ip, int d) //throws InterruptedException
     {
         autor = a;
         tytul = t;
@@ -39,7 +41,7 @@ public class Longplay extends Plyta{
         setLista(ip);
     }
 
-    Longplay(String a, String t,String g, int ip, int d, Vector <Piosenka> v)
+    ExtendedPlay(String a, String t,String g, int ip, int d, Vector<Piosenka> v)
     {
         autor = a;
         tytul = t;
@@ -49,21 +51,21 @@ public class Longplay extends Plyta{
         lista=v;
     }
 
-    Longplay(Longplay longplay)
+    ExtendedPlay(ExtendedPlay ep)
     {
-        autor = longplay.autor;
-        tytul = longplay.tytul;
-        gatunek = longplay.gatunek;
-        ilosc_p = longplay.ilosc_p;
-        data = longplay.data;
-        lista = longplay.lista;
+        autor = ep.autor;
+        tytul = ep.tytul;
+        gatunek = ep.gatunek;
+        ilosc_p = ep.ilosc_p;
+        data = ep.data;
+        lista = ep.lista;
     }
 
     //virtual void disp();
 
-    Longplay modyfikacja()
+    ExtendedPlay modyfikacja()
     {
-        Longplay b = this;
+        ExtendedPlay b = this;
         String a;
         Scanner input = new Scanner(System.in);
         int i = 1;
@@ -186,13 +188,13 @@ public class Longplay extends Plyta{
             {
                 case 1:
                     //this->lista.push_back(dodawanie());
-                   // try
-                   // {
-                        lista.addElement(dodawanie());
-                   // }
-                   // catch (InterruptedException e)
-                   // {
-                   //     Thread.currentThread().interrupt();
+                    // try
+                    // {
+                    lista.addElement(dodawanie());
+                    // }
+                    // catch (InterruptedException e)
+                    // {
+                    //     Thread.currentThread().interrupt();
                     //}
                     ilosc_p++;
                     //Sleep(1000);
@@ -264,19 +266,24 @@ public class Longplay extends Plyta{
 
     Boolean dlplyty(int i)
     {
-        return false;
+        if(i>10||dlugosc()>1800)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 
     void typmenu()
     {
-        System.out.println("Katalog plyt typu Longplay. Co chcesz zrobic?");
+        System.out.println("Katalog plyt typu Extended Play. Co chcesz zrobic?");
     }
 
     void setLista(int i)
     {
         if(dlplyty(i))
         {
-
+            System.out.println("Ten rodzaj plyty moze zawierac maksymalnie 10 piosenek i trwać 30 min.");
         }
         else
         {
@@ -287,6 +294,13 @@ public class Longplay extends Plyta{
 
     void dlPlytyBlad(int i)
     {
-
+        switch(i)
+        {
+            case 1:
+                System.out.println("Ten rodzaj plyty moze zawierac maksymalnie 10 piosenek. Sprobuj dodac ten album uzywajac typu Longplay.");
+            case 2:
+                System.out.println("Ten rodzaj plyty moze trwac maksymalnie 30min. Sprobuj dodac ten album uzywajac typu Longplay.");
+        }
     }
 }
+

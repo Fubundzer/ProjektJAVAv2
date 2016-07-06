@@ -31,7 +31,7 @@ public abstract class Plyta {
         }
     }*/
 
-    Piosenka dodawanie() throws InterruptedException
+    Piosenka dodawanie()
     {
         Scanner input=new Scanner(System.in);
         Scanner input2=new Scanner(System.in);
@@ -47,7 +47,7 @@ public abstract class Plyta {
         while (m>60||m<0)
         {
             //getZnakDlpError();
-            Thread.sleep(1000); //throws interruptedexception
+            //Thread.sleep(1000); //throws interruptedexception
             //cin.clear();
             //cin.sync();
             System.out.print("MIN: ");
@@ -67,6 +67,7 @@ public abstract class Plyta {
         Piosenka a= new Piosenka(t, m, s);
         return a;
     };
+
     int dlugosc()
     {
         int czas = 0;
@@ -76,6 +77,7 @@ public abstract class Plyta {
         }
         return czas;
     };
+
     int get_dlugosc()
     {
         int czas = 0;
@@ -86,11 +88,13 @@ public abstract class Plyta {
         System.out.println("Dlugosc plyty to: "+czas / 60+"MIN "+czas % 60+"SEK");
         return czas;
     };
+
     void modl(int i, Piosenka a)
     {
         //	lista[i] = a;
         lista.set(i, a);
     }
+
     void wypisywaniep()
     {
         for (int i = 0; i < ilosc_p; i++)
@@ -100,6 +104,7 @@ public abstract class Plyta {
             lista.get(i).disp();
         }
     };
+
     String get_lista()
     {
         String a = "";
@@ -114,27 +119,31 @@ public abstract class Plyta {
         }
         return a;
     };
+
     String get_autor()
     {
         return autor;
     };
+
     String get_tytul()
     {
         return tytul;
     };
+
     String get_gatunek()
     {
         return gatunek;
     };
+
     int get_rok()
     {
         return data;
     };
+
     int get_iloscp()
     {
         return ilosc_p;
     }
-
 
     void setAutor(String a)
     {
@@ -150,6 +159,7 @@ public abstract class Plyta {
     {
         this.gatunek=g;
     }
+
     void setIlosc_p(int ip)
     {
         this.ilosc_p=ip;
@@ -170,6 +180,15 @@ public abstract class Plyta {
         System.out.println("Ilosc piosenek: "+ilosc_p);
         dlugosc();
     }
+
+    abstract Plyta modyfikacja();
+    abstract Boolean dlplyty(int i);
+    abstract void typmenu();
+    abstract Vector<Piosenka> modyfikacjalisty();
+    abstract String getRodzaj();
+    abstract void setLista(int i);
+    abstract void dlPlytyBlad(int i);
+
     /*Plyta modyfikacja()
     {
         Plyta b = this;
@@ -260,11 +279,5 @@ public abstract class Plyta {
 
         return b;
     }*/
-    abstract Plyta modyfikacja();
-    abstract Boolean dlplyty();
-    abstract void typmenu();
-    abstract Vector<Piosenka> modyfikacjalisty();
-    abstract String getRodzaj();
-    abstract void setLista();
 
 }

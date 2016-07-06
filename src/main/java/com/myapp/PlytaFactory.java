@@ -15,13 +15,11 @@ public class PlytaFactory {
         }else
         if(newType.equals("E"))
         {
-           // return new ExtendedPlay(String a, String t,String g, int ip, int d);
-            return new Longplay();
+            return new ExtendedPlay();
         }else
         if(newType.equals("S"))
         {
-            //return new Single(String a, String t,String g, int ip, int d);
-            return new Longplay();
+            return new Single();
         }
         else return null;
     }

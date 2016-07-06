@@ -12,6 +12,11 @@ public class Katalog {
     String typ;
     PlytaFactory factory = new PlytaFactory();
 
+    Katalog(String typ)
+    {
+        this.typ=typ;
+    };
+
     Katalog(Vector <Plyta> dane,String typ)
     {
         this.dane=dane;
@@ -426,6 +431,7 @@ public class Katalog {
     //template <class T> T dodawaniavec()
     Plyta dodawaniavec()
     {
+        Plyta a= factory.makePlyta(typ);
         Scanner input = new Scanner(System.in);
         String autor, tytul,gatunek;
         int ilosc_p, data,i=0;
@@ -443,6 +449,11 @@ public class Katalog {
         gatunek=input.nextLine();
         System.out.println("Podaj ilosc piosenek: ");
         ilosc_p=input.nextInt();
+        if(a.dlplyty(ilosc_p))
+        {
+            a.dlPlytyBlad(1);
+            return null;
+        }
 		/*while (cin.fail())
 		{
 			getZnakError();
@@ -463,7 +474,6 @@ public class Katalog {
 			cout << "Wprowadz rok wydania plyty." << endl;
 			cin >> data;
 		}*/
-        Plyta a= factory.makePlyta(typ);
         a.setAutor(autor);
         a.setTytul(tytul);
         a.setGatunek(gatunek);
@@ -521,6 +531,10 @@ public class Katalog {
                         //dane + dodawaniavec<T>();
                         //dane.add(dodawaniavec());
                         catalog.dane.add(dodawaniavec());
+                        if(catalog.dane.get(dane.size()-1).dlplyty(catalog.dane.get(dane.size()-1).get_iloscp()))
+                        {
+                            dane.remove(dane.size()-1);
+                        }
                         //Sleep(1000);
                         //system("cls");
                         break;
