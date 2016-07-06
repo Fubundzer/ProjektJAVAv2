@@ -78,7 +78,7 @@ public abstract class Plyta {
         return czas;
     };
 
-    int get_dlugosc()
+    int getDlugosc()
     {
         int czas = 0;
         for (int i = 0; i < ilosc_p; i++)
@@ -120,27 +120,27 @@ public abstract class Plyta {
         return a;
     };
 
-    String get_autor()
+    String getAutor()
     {
         return autor;
     };
 
-    String get_tytul()
+    String getTytul()
     {
         return tytul;
     };
 
-    String get_gatunek()
+    String getGatunek()
     {
         return gatunek;
     };
 
-    int get_rok()
+    int getRok()
     {
         return data;
     };
 
-    int get_iloscp()
+    int getIloscp()
     {
         return ilosc_p;
     }

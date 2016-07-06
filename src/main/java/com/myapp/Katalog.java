@@ -331,7 +331,7 @@ public class Katalog {
                     System.out.println("Wprowadz autora.");
                     a=input2.nextLine();
                     for (j = 0; j < dane.size(); j++) {
-                        if (dane.get(j).get_autor().equals(a)) {
+                        if (dane.get(j).getAutor().equals(a)) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
@@ -342,7 +342,7 @@ public class Katalog {
                     System.out.println("Wprowadz tytul.");
                     a=input2.nextLine();
                     for (j = 0; j < dane.size(); j++) {
-                        if (dane.get(j).get_tytul().equals(a)) {
+                        if (dane.get(j).getTytul().equals(a)) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
@@ -353,7 +353,7 @@ public class Katalog {
                     System.out.println("Wprowadz gatunek.");
                     a=input2.nextLine();
                     for (j = 0; j < dane.size(); j++) {
-                        if (dane.get(j).get_gatunek().equals(a)) {
+                        if (dane.get(j).getGatunek().equals(a)) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
@@ -372,7 +372,7 @@ public class Katalog {
                         cin >> r;
                     }*/
                     for (j = 0; j < dane.size(); j++) {
-                        if (dane.get(j).get_rok() == r) {
+                        if (dane.get(j).getRok() == r) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
@@ -391,7 +391,7 @@ public class Katalog {
                         cin >> r;
                     }*/
                     for (j = 0; j < dane.size(); j++) {
-                        if (dane.get(j).get_iloscp() == r) {
+                        if (dane.get(j).getIloscp() == r) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
@@ -410,7 +410,7 @@ public class Katalog {
                         cin >> r;
                     }*/
                     for (j = 0; j < dane.size(); j++) {
-                        if (dane.get(j).get_dlugosc() >= r * 60) {
+                        if (dane.get(j).getDlugosc() >= r * 60) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
@@ -534,7 +534,7 @@ public class Katalog {
                         //dane.add(dodawaniavec());
                       //  Plyta cos = dodawaniavec();
                         catalog.dane.addElement(dodawaniavec());
-                        if(catalog.dane.get(dane.size()-1).dlplyty(catalog.dane.get(dane.size()-1).get_iloscp()))
+                        if(catalog.dane.get(dane.size()-1).dlplyty(catalog.dane.get(dane.size()-1).getIloscp()))
                         {
                             dane.remove(dane.size()-1);
                         }
