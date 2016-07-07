@@ -5,10 +5,8 @@ package com.myapp;
  */
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.util.Scanner;
-import java.sql.*;
+
 
 public class catalogMain extends JFrame{
 
@@ -20,12 +18,8 @@ public class catalogMain extends JFrame{
         Scanner input = new Scanner(System.in);
 
         int a = 1;
-        //Plyta hehe=new Longplay("cos","cos","cos",2,2000);
-        //hehe.getRodzaj();
 
-
-        //LongplayDAO b = new LongplayDAO();
-        //b.save();
+        LongplayDAO b = new LongplayDAO();
 
 
         while (a != 0)
@@ -33,7 +27,9 @@ public class catalogMain extends JFrame{
             System.out.println("1. Katalog plyt typu Longplay.");
             System.out.println("2. Katalog plyt typu Extendedplay.");
             System.out.println("3. Katalog plyt typu Single.");
-            System.out.println("4. Wyswietl zawartosc calego katalogu.");
+            System.out.println("4. Wczytaj zawartosc katalogów z bazy danych.");
+            System.out.println("5. Zapisz zawartosc katalogów do bazy danych.");
+            System.out.println("6. Wyswietl zawartosc calego katalogu.");
             System.out.println( "0. Zakonczenie programu.");
             while (!input.hasNextInt())
             {
@@ -53,9 +49,18 @@ public class catalogMain extends JFrame{
                         dane3.menu(dane3);
                         break;
                     case 4:
+                        b.load(dane,dane2,dane3);
+                        break;
+                    case 5:
+                        b.save(dane,dane2,dane3);
+                        break;
+                    case 6:
                         System.out.println("Zawartosc calego katalogu: ");
+                        System.out.println();
                         dane.display();
+                        System.out.println();
                         dane2.display();
+                        System.out.println();
                         dane3.display();
                         break;
                     case 0:

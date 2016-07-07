@@ -90,7 +90,7 @@ public abstract class Plyta {
     {
         for (int i = 0; i < ilosc_p; i++)
         {
-            System.out.print(i + 1+". ");
+            System.out.print((i + 1)+". ");
             lista.get(i).disp();
         }
     }
@@ -180,4 +180,13 @@ public abstract class Plyta {
     abstract void setLista(int i);
     abstract void dlPlytyBlad(int i);
 
+    public void dodajP(Piosenka a)
+    {
+        lista.addElement(a);
+    }
+
+    public Vector<Piosenka> getLista()
+    {
+        return lista;
+    }
 }

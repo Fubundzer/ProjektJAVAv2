@@ -29,6 +29,15 @@ public class Katalog {
         typ=katalog.typ;
     }
 
+    void doBazy(Plyta a)
+    {
+        dane.addElement(a);
+    }
+
+    Vector <Plyta> getDane()
+    {
+        return dane;
+    }
 
     Katalog usuwanie()
     {
@@ -193,6 +202,7 @@ public class Katalog {
         {
             System.out.print((i + 1)+". ");
             dane.get(i).disp();
+            System.out.println();
         }
     }
 
@@ -368,9 +378,7 @@ public class Katalog {
             System.out.println("5. Wstaw plyte w konretne miejsce.");
             System.out.println("6. Wstaw dwie lub wiecej plyt.");
             System.out.println("7. Wyszukiwanie plyt.");
-            System.out.println("8. Zapisz baze katalogu.");
-            System.out.println("9. Wczytaj baze katalogu.");
-            System.out.println("10. Wyswietl informacje o plytach.");
+            System.out.println("8. Wyswietl informacje o plytach.");
             System.out.println("0. Powrot do menu.");
             while (!input.hasNextInt())
             {
@@ -426,17 +434,7 @@ public class Katalog {
                     case 7:
                         catalog.wszysukiwaniek();
                         break;
-                    /*case 8:
-                        dane.zapis();
-                        Sleep(1000);
-                        system("cls");
-                        break;
-                    case 9:
-                        dane.odczyt();
-                        Sleep(3000);
-                        system("cls");
-                        break;*/
-                    case 10:
+                    case 8:
                         catalog.display();
                         break;
                     case 0:

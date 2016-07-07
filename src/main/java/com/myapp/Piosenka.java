@@ -47,6 +47,31 @@ public class Piosenka {
         return tytulp;
     };
 
+    public void setTytulp(String t)
+    {
+        tytulp=t;
+    }
+
+    public void setMin(int m)
+    {
+        min=m;
+    }
+
+    public void setSek(int s)
+    {
+        sek=s;
+    }
+
+    public int getMin()
+    {
+        return min;
+    }
+
+    public int getSek()
+    {
+        return sek;
+    }
+
     public Piosenka modyfikacja() {
         Scanner input = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
