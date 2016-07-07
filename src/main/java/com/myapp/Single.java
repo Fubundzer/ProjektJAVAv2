@@ -60,7 +60,7 @@ public class Single extends Plyta{
         int i = 1;
         while (i != 0)
         {
-            //system("cls");
+            c.clr();
             System.out.println("Modyfikowanie albumu. Wybierz jedna z ponizszych opcji.");
             System.out.println("1. Modyfikacja autora plyty.");
             System.out.println("2. Modyfikacja tytulu plyty.");
@@ -126,6 +126,7 @@ public class Single extends Plyta{
         Scanner input = new Scanner(System.in);
         while (i != 0)
         {
+            c.clr();
             System.out.println("Co chcesz zrobic?");
             System.out.println("1. Dodac piosenke.");
             System.out.println("2. Usunac piosenke.");

@@ -59,6 +59,7 @@ public class Longplay extends Plyta{
         int i = 1;
         while (i != 0)
         {
+            c.clr();
             System.out.println("Modyfikowanie albumu. Wybierz jedna z ponizszych opcji.");
             System.out.println("1. Modyfikacja autora plyty.");
             System.out.println("2. Modyfikacja tytulu plyty.");
@@ -117,6 +118,7 @@ public class Longplay extends Plyta{
         Scanner input = new Scanner(System.in);
         while (i != 0)
         {
+            c.clr();
             System.out.println("Co chcesz zrobic?");
             System.out.println("1. Dodac piosenke.");
             System.out.println("2. Usunac piosenke.");
@@ -131,6 +133,7 @@ public class Longplay extends Plyta{
             switch (i)
             {
                 case 1:
+                    c.clr();
                         lista.addElement(dodawanie());
                     ilosc_p++;
                     break;

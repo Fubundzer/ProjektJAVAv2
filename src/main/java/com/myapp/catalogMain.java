@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class catalogMain extends JFrame{
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Katalog dane = new Katalog("L");
         Katalog dane2 = new Katalog("E");
         Katalog dane3 = new Katalog("S");
@@ -18,6 +18,7 @@ public class catalogMain extends JFrame{
         Scanner input = new Scanner(System.in);
 
         int a = 1;
+        Clear c=new Clear();
 
         LongplayDAO b = new LongplayDAO();
 
@@ -40,21 +41,27 @@ public class catalogMain extends JFrame{
                 switch (a)
                 {
                     case 1:
+                        c.clr();
                         dane.menu(dane);
                         break;
                     case 2:
+                        c.clr();
                         dane2.menu(dane2);
                         break;
                     case 3:
+                        c.clr();
                         dane3.menu(dane3);
                         break;
                     case 4:
+                        c.clr();
                         b.load(dane,dane2,dane3);
                         break;
                     case 5:
+                        c.clr();
                         b.save(dane,dane2,dane3);
                         break;
                     case 6:
+                        c.clr();
                         System.out.println("Zawartosc calego katalogu: ");
                         System.out.println();
                         dane.display();
@@ -62,15 +69,19 @@ public class catalogMain extends JFrame{
                         dane2.display();
                         System.out.println();
                         dane3.display();
+                        System.out.println("-----------------------------------------------");
+                        Thread.sleep(5000);
                         break;
                     case 0:
                         break;
                     default:
+                        c.clr();
                         System.out.println("Nie ma takiej opcji!");
                         break;
                 }
 
         }
     }
+
 
 }

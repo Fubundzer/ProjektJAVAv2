@@ -12,6 +12,7 @@ public class Katalog {
     Vector <Plyta> dane=new Vector<Plyta>();
     String typ;
     PlytaFactory factory = new PlytaFactory();
+    Clear c=new Clear();
 
     Katalog(String typ)
     {
@@ -22,7 +23,7 @@ public class Katalog {
     {
         this.dane=dane;
         this.typ=typ;
-    };
+    }
     Katalog(Katalog katalog)
     {
         dane = katalog.dane;
@@ -235,6 +236,7 @@ public class Katalog {
                         if (dane.get(j).getAutor().equals(a)) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
+                            System.out.println();
                         }
                     }
                     break;
@@ -245,6 +247,7 @@ public class Katalog {
                         if (dane.get(j).getTytul().equals(a)) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
+                            System.out.println();
                         }
                     }
                     break;
@@ -255,6 +258,7 @@ public class Katalog {
                         if (dane.get(j).getGatunek().equals(a)) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
+                            System.out.println();
                         }
                     }
                     break;
@@ -270,6 +274,7 @@ public class Katalog {
                         if (dane.get(j).getRok() == r) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
+                            System.out.println();
                         }
                     }
                     break;
@@ -285,6 +290,7 @@ public class Katalog {
                         if (dane.get(j).getIloscp() == r) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
+                            System.out.println();
                         }
                     }
                     break;
@@ -300,6 +306,7 @@ public class Katalog {
                         if (dane.get(j).getDlugosc() >= r * 60) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
+                            System.out.println();
                         }
                     }
                     break;
@@ -370,6 +377,7 @@ public class Katalog {
         int b = 1;
         while (a != 0)
         {
+
             domenu();
             System.out.println("1. Dodaj plyte.");
             System.out.println("2. Usun plyte.");
@@ -389,7 +397,7 @@ public class Katalog {
                 switch (a)
                 {
                     case 1:
-
+                        c.clr();
                         catalog.dane.addElement(dodawaniavec());
                         if(catalog.dane.get(dane.size()-1).dlplyty(catalog.dane.get(dane.size()-1).getIloscp()))
                         {
@@ -397,13 +405,16 @@ public class Katalog {
                         }
                         break;
                     case 2:
+                        c.clr();
                         catalog.display();
                         catalog=catalog.usuwanie();
                         break;
                     case 3:
+                        c.clr();
                         catalog=catalog.czyszczenie();
                         break;
                     case 4:
+                        c.clr();
                         catalog.display();
                         System.out.println("Ktory album chcesz modyfikowac?");
                         while (!input.hasNextInt())
@@ -422,19 +433,24 @@ public class Katalog {
                             }
                             b=input.nextInt();
                         }
+                        c.clr();
                         catalog.mod(catalog.get_value(b - 1).modyfikacja(), b-1);
                         break;
                     case 5:
+                        c.clr();
                         catalog.display();
                         catalog.wstawianie();
                         break;
                     case 6:
+                        c.clr();
                         catalog.wstawianietab();
                         break;
                     case 7:
+                        c.clr();
                         catalog.wszysukiwaniek();
                         break;
                     case 8:
+                        c.clr();
                         catalog.display();
                         break;
                     case 0:

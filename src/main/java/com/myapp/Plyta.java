@@ -10,6 +10,7 @@ public abstract class Plyta {
     String autor, tytul, gatunek,rodzaj;
     int ilosc_p, data;
     Vector<Piosenka> lista = new Vector<Piosenka>();
+    Clear c=new Clear();
 
     Piosenka dodawanie()
     {
