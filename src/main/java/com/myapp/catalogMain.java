@@ -3,9 +3,12 @@ package com.myapp;
 /**
  * Created by Michał on 05.07.2016.
  */
-import java.awt.*;
+
 import javax.swing.*;
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.Scanner;
+import java.sql.*;
 
 public class catalogMain extends JFrame{
 
@@ -21,24 +24,23 @@ public class catalogMain extends JFrame{
         //hehe.getRodzaj();
 
 
+        //LongplayDAO b = new LongplayDAO();
+        //b.save();
+
+
         while (a != 0)
         {
-            //system("cls");
             System.out.println("1. Katalog plyt typu Longplay.");
             System.out.println("2. Katalog plyt typu Extendedplay.");
             System.out.println("3. Katalog plyt typu Single.");
             System.out.println("4. Wyswietl zawartosc calego katalogu.");
             System.out.println( "0. Zakonczenie programu.");
-            a=input.nextInt();
-            /*if (cin.fail())
+            while (!input.hasNextInt())
             {
-                getZnakError();
-                Sleep(1000);
-                cin.clear();
-                cin.sync();
+                System.out.println("Wprowadz liczbe!");
+                input.next();
             }
-            else
-            {*/
+            a=input.nextInt();
                 switch (a)
                 {
                     case 1:
@@ -51,18 +53,15 @@ public class catalogMain extends JFrame{
                         dane3.menu(dane3);
                         break;
                     case 4:
-                        //system("cls");
                         System.out.println("Zawartosc calego katalogu: ");
                         dane.display();
                         dane2.display();
                         dane3.display();
-                        //system("pause");
                         break;
                     case 0:
                         break;
                     default:
-                        //getZlaOpcja();
-                        //Sleep(1000);
+                        System.out.println("Nie ma takiej opcji!");
                         break;
                 }
 

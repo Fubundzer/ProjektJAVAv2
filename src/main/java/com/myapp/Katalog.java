@@ -3,6 +3,7 @@ package com.myapp;
 /**
  * Created by Michał on 06.07.2016.
  */
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -27,31 +28,7 @@ public class Katalog {
         dane = katalog.dane;
         typ=katalog.typ;
     }
-    //Katalog operator +(const TYP &d);
-    //Katalog operator +(const Katalog<TYP> &d);
-    //	Katalog usuwanie();
-    //	Katalog czyszczenie();
-    //	Katalog wstawianie();
-    //	Katalog wstawianietab();
-    //	TYP get_value(int i);
-    //	void mod(TYP d, int a);
-    //	int dlugosc();
-    //	void display();
-    //	void wszysukiwaniek();
-    //	void zapis();
-    //	void odczyt();
 
-	/*template <class T> T dodawaniavec();
-	template <class T> T dodawaniavec(T a);
-	template <class T> Katalog<T> menu(Katalog <T> dane);
-	template <class T> void domenu();
-
-	template <class TYP>
-	Katalog<TYP> Katalog<TYP>::operator +(const TYP & d)
-	{
-		dane.push_back(d);
-		return *this;
-	}*/
 
     Katalog usuwanie()
     {
@@ -60,20 +37,25 @@ public class Katalog {
         char a = 'a';
         if (dane.size() == 0)
         {
-            //getBrakPzError();
-            //Sleep(1000);
+            System.out.println("Katalog jest już pusty.");
         }
         else
         {
             System.out.print("Podaj numer albumu, ktory chcesz usunac: ");
+            while (!input.hasNextInt())
+            {
+                System.out.println("Wprowadz liczbe!");
+                input.next();
+            }
             i=input.nextInt();
             while (i > dane.size() || i < 1)
             {
-                //	getZnakDlError();
-                //Sleep(1000);
-                //	cin.clear();
-                //cin.sync();
                 System.out.print("Podaj numer albumu, ktory chcesz usunac: ");
+                while (!input.hasNextInt())
+                {
+                    System.out.println("Wprowadz liczbe!");
+                    input.next();
+                }
                 i=input.nextInt();
             }
             while (a != 'y' && a != 'Y' && a != 'n' && a != 'N')
@@ -82,28 +64,21 @@ public class Katalog {
                 a=input.next().charAt(0);
                 switch (a){
                     case 'y':
-                        //dane.erase(dane.begin() + i - 1);
                         dane.remove(i-1);
                         System.out.println("Album usuniety.");
-                        //Sleep(1000);
                         break;
                     case 'Y':
-                        //dane.erase(dane.begin() + i - 1);
                         dane.remove(i-1);
                         System.out.println("Album usuniety.");
-                        //Sleep(1000);
                         break;
                     case 'n':
                         System.out.println("Nie usunieto albumu.");
-                        //Sleep(1000);
                         break;
                     case 'N':
                         System.out.println("Nie usunieto albumu.");
-                        //Sleep(1000);
                         break;
                     default:
-                        //getZlaOpcja();
-                        //Sleep(1000);
+                        System.out.println("Nie ma takiej opcji!");
                         break;
                 }
             }
@@ -123,24 +98,19 @@ public class Katalog {
                 case 'y':
                     dane.clear();
                     System.out.println("Katalog wyczyszczony.");
-                    //Sleep(1000);
                     break;
                 case 'Y':
                     dane.clear();
                     System.out.println("Katalog wyczyszczony.");
-                    //Sleep(1000);
                     break;
                 case 'n':
                     System.out.println("Nie wyczyszczono katalogu.");
-                    //Sleep(1000);
                     break;
                 case 'N':
                     System.out.println("Nie wyczyszczono katalogu.");
-                    //Sleep(1000);
                     break;
                 default:
-                    //getZlaOpcja();
-                    //Sleep(1000);
+                    System.out.println("Nie ma takiej opcji!");
                     break;
             }
         }
@@ -153,44 +123,43 @@ public class Katalog {
         Scanner input = new Scanner(System.in);
         int i;
         System.out.println("W ktore miejsce chcesz wstawic nowy album?");
+        while (!input.hasNextInt())
+        {
+            System.out.println("Wprowadz liczbe!");
+            input.next();
+        }
         i=input.nextInt();
         while (i>dane.size()+1||i<1)
         {
-            //getZnakDlError();
-            //Sleep(1000);
-            //cin.clear();
-            //cin.sync();
             System.out.println("W ktore miejsce chcesz wstawic nowy album?");
+            while (!input.hasNextInt())
+            {
+                System.out.println("Wprowadz liczbe!");
+                input.next();
+            }
             i=input.nextInt();
         }
         if (i == dane.size() + 1)
         {
-            //dane.push_back(dodawaniavec<TYP>());
             dane.addElement(dodawaniavec());
         }
         else
-            //dane.insert(dane.begin() + i - 1, dodawaniavec<TYP>());
             dane.insertElementAt(dodawaniavec(), i-1);
         return this;
     }
 
-    //template <class TYP>
     Katalog wstawianietab()
     {
         Scanner input = new Scanner(System.in);
         int i, j;
         Plyta tab[];
         System.out.println("Ile albumow chcesz wstawic?");
-        i=input.nextInt();
-        /*while (cin.fail())
+        while (!input.hasNextInt())
         {
-            getZnakError();
-            Sleep(1000);
-            cin.clear();
-            cin.sync();
-            cout << "Ile albumow chcesz wstawic?" << endl;
-            cin >> i;
-        }*/
+            System.out.println("Wprowadz liczbe!");
+            input.next();
+        }
+        i=input.nextInt();
         tab = new Plyta[i];
         for (j = 0; j < i; j++)
         {
@@ -203,27 +172,21 @@ public class Katalog {
         return this;
     }
 
-
-    //	template <class TYP>
     Plyta get_value(int i)
     {
         return dane.get(i);
     }
 
-    //	template <class TYP>
     void mod(Plyta d, int a)
     {
-        //dane[a - 1] = d;
         dane.set(a,d);
     }
 
-    //	template <class TYP>
     int dlugosc()
     {
         return dane.size();
     }
 
-    //	template <class TYP>
     void display()
     {
         for (int i = 0; i < dane.size(); i++)
@@ -233,83 +196,6 @@ public class Katalog {
         }
     }
 
-    //	template <class TYP>
-    /*Katalog<TYP> Katalog<TYP>::operator +(const Katalog<TYP> & d)
-    {
-        for (int i = 0; i < d.dlugosc(); i++)
-        {
-            dane[i] = dodawaniavec<TYP>(d.get_value(i));
-        }
-        return *this;
-    }*/
-
-    //	template <class TYP>
-   /* void Katalog<TYP>::zapis()
-    {
-        string nazwa = dane[0].get_r() + ".txt";
-        string nazwa2 = dane[0].get_r() + "listap.txt";
-        ofstream f(nazwa);
-        ofstream f2(nazwa2);
-        for (int i = 0; i <dane.size(); i++)
-        {
-            f<<"Plyta\n" <<dane[i].get_autor() << "\n" << dane[i].get_tytul() << "\n" <<dane[i].get_gatunek()<< "\n" << dane[i].get_rok() << "\n" << dane[i].get_iloscp() << '\n';
-            f2<<"Lista\n" << dane[i].get_lista();
-        }
-
-    }
-
-    //	template <class TYP>
-    void Katalog<TYP>::odczyt()
-    {
-        TYP a;
-        string linia;
-        string nazwa = a.get_r() + ".txt";
-        string nazwa2 = a.get_r() + "listap.txt";
-        ifstream dat(nazwa);
-        ifstream dat2(nazwa2);
-        string autor;
-        string tytul;
-        string gatunek,r,ipp,min,sek;
-        int rok;
-        int ip;
-        string n;
-        int m, s, x = 0, y;
-        vector<Piosenka> lista;
-        dane.clear();
-        while (getline(dat,linia))
-        {
-            if (linia == "Plyta")
-            {
-                getline(dat, autor);
-                getline(dat, tytul);
-                getline(dat, gatunek);
-                getline(dat, r);
-                rok = stoi(r, nullptr);
-                getline(dat, ipp);
-                ip = stoi(ipp, nullptr);
-                while (getline(dat2,linia))
-                {
-                    if (linia == "Lista")
-                    {
-                        for (y = 0; y < ip * 3; y++)
-                        {
-                            getline(dat2, n);
-                            getline(dat2, min);
-                            m = stoi(min, nullptr);
-                            getline(dat2, sek);
-                            s = stoi(sek, nullptr);
-                            Piosenka a(n, m, s);
-                            lista.push_back(a);
-                        }
-                    }
-                }
-                TYP b(autor, tytul, gatunek, ip, rok, lista);
-                dane.push_back(b);
-            }
-        }
-    }*/
-
-    //	template <class TYP>
     void wszysukiwaniek()
     {
         Scanner input = new Scanner(System.in);
@@ -325,6 +211,11 @@ public class Katalog {
             System.out.println("5. Ilosc piosenek.");
             System.out.println("6. Minimalna dlugosc.");
             System.out.println("0. Zakoncz wyszukiwanie.");
+            while (!input.hasNextInt())
+            {
+                System.out.println("Wprowadz liczbe!");
+                input.next();
+            }
             i=input.nextInt();
             switch (i) {
                 case 1:
@@ -336,7 +227,6 @@ public class Katalog {
                             dane.get(j).disp();
                         }
                     }
-                    //Sleep(1000);
                     break;
                 case 2:
                     System.out.println("Wprowadz tytul.");
@@ -347,7 +237,6 @@ public class Katalog {
                             dane.get(j).disp();
                         }
                     }
-                    //Sleep(1000);
                     break;
                 case 3:
                     System.out.println("Wprowadz gatunek.");
@@ -358,124 +247,98 @@ public class Katalog {
                             dane.get(j).disp();
                         }
                     }
-                    //Sleep(1000);
                     break;
                 case 4:
                     System.out.println("Wprowadz rok.");
+                    while (!input.hasNextInt())
+                    {
+                        System.out.println("Wprowadz liczbe!");
+                        input.next();
+                    }
                     r=input.nextInt();
-                    /*while (cin.fail()) {
-                        getZnakError();
-                        Sleep(1000);
-                        cin.clear();
-                        cin.sync();
-                        cout << "Wprowadz rok." << endl;
-                        cin >> r;
-                    }*/
                     for (j = 0; j < dane.size(); j++) {
                         if (dane.get(j).getRok() == r) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
                     }
-                    //Sleep(1000);
                     break;
                 case 5:
                     System.out.println("Wprowadz ilosc piosenek.");
+                    while (!input.hasNextInt())
+                    {
+                        System.out.println("Wprowadz liczbe!");
+                        input.next();
+                    }
                     r=input.nextInt();
-                    /*while (cin.fail()) {
-                        getZnakError();
-                        Sleep(1000);
-                        cin.clear();
-                        cin.sync();
-                        cout << "Wprowadz ilosc piosenek." << endl;
-                        cin >> r;
-                    }*/
                     for (j = 0; j < dane.size(); j++) {
                         if (dane.get(j).getIloscp() == r) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
                     }
-                    //Sleep(1000);
                     break;
                 case 6:
                     System.out.println("Wprowadz minimalna dlugosc plyty (MIN).");
+                    while (!input.hasNextInt())
+                    {
+                        System.out.println("Wprowadz liczbe!");
+                        input.next();
+                    }
                     r=input.nextInt();
-                    /*while (cin.fail()) {
-                        getZnakError();
-                        Sleep(1000);
-                        cin.clear();
-                        cin.sync();
-                        cout << "Wprowadz minimalna dlugosc plyty (MIN)." << endl;
-                        cin >> r;
-                    }*/
                     for (j = 0; j < dane.size(); j++) {
                         if (dane.get(j).getDlugosc() >= r * 60) {
                             System.out.print((j + 1)+". ");
                             dane.get(j).disp();
                         }
                     }
-                    //Sleep(1000);
                     break;
                 case 0:
                     System.out.println("Zakonczono wyszukiwanie.");
-                    //Sleep(1000);
                     break;
                 default:
-                    //getZlaOpcja();
-                    //Sleep(1000);
+                    System.out.println("Nie ma takiej opcji!");
                     break;
             }
         }
     }
 
-    //template <class T> T dodawaniavec()
     Plyta dodawaniavec()
     {
         Plyta a= factory.makePlyta(typ);
-        a.getRodzaj();
         Scanner input = new Scanner(System.in);
         String autor, tytul,gatunek;
         int ilosc_p, data,i=0;
         System.out.println("Podaj autora plyty: ");
-        //cin.sync();
-        //getline(cin, autor);
         autor=input.nextLine();
         System.out.println("Podaj tytul plyty: ");
-        //cin.sync();
-        //getline(cin, tytul);
         tytul=input.nextLine();
         System.out.println("Podaj gatunek plyty: ");
-        //cin.sync();
-        //getline(cin, gatunek);
         gatunek=input.nextLine();
         System.out.println("Podaj ilosc piosenek: ");
-        ilosc_p=input.nextInt();
+        while (!input.hasNextInt())
+        {
+            System.out.println("Wprowadz liczbe!");
+            input.next();
+        }
+        ilosc_p = input.nextInt();
         if(a.dlplyty(ilosc_p))
         {
             a.dlPlytyBlad(1);
-            return null;
+            a.setAutor(autor);
+            a.setTytul(tytul);
+            a.setGatunek(gatunek);
+            a.setIlosc_p(ilosc_p);
+            a.setData(0);
+            return a;
         }
-		/*while (cin.fail())
-		{
-			getZnakError();
-			Sleep(1000);
-			cin.clear();
-			cin.sync();
-			cout << "Wprowadz ilosc piosenek." << endl;
-			cin >> ilosc_p;
-		}*/
         System.out.println("Podaj rok wydania plyty: ");
+        while (!input.hasNextInt())
+        {
+            System.out.println("Wprowadz liczbe!");
+            input.next();
+        }
         data=input.nextInt();
-		/*while (cin.fail())
-		{
-			getZnakError();
-			Sleep(1000);
-			cin.clear();
-			cin.sync();
-			cout << "Wprowadz rok wydania plyty." << endl;
-			cin >> data;
-		}*/
         a.setAutor(autor);
         a.setTytul(tytul);
         a.setGatunek(gatunek);
@@ -483,11 +346,6 @@ public class Katalog {
         a.setData(data);
         return a;
     }
-
-   /* template <class T> T dodawaniavec(T a)
-    {
-        return a;
-    }*/
 
     void domenu()
     {
@@ -500,7 +358,6 @@ public class Katalog {
         Scanner input=new Scanner(System.in);
         int a = 1;
         int b = 1;
-        Plyta x;
         while (a != 0)
         {
             domenu();
@@ -515,76 +372,59 @@ public class Katalog {
             System.out.println("9. Wczytaj baze katalogu.");
             System.out.println("10. Wyswietl informacje o plytach.");
             System.out.println("0. Powrot do menu.");
-
-            a=input.nextInt();
-            /*if (cin.fail())
+            while (!input.hasNextInt())
             {
-                getZnakError();
-                Sleep(1000);
-                cin.clear();
-                cin.sync();
+                System.out.println("Wprowadz liczbe!");
+                input.next();
             }
-            else
-            {
-                system("cls");*/
+            a=input.nextInt();
                 switch (a)
                 {
                     case 1:
-                        //dane + dodawaniavec<T>();
-                        //dane.add(dodawaniavec());
-                      //  Plyta cos = dodawaniavec();
+
                         catalog.dane.addElement(dodawaniavec());
                         if(catalog.dane.get(dane.size()-1).dlplyty(catalog.dane.get(dane.size()-1).getIloscp()))
                         {
                             dane.remove(dane.size()-1);
                         }
-                        //Sleep(1000);
-                        //system("cls");
                         break;
                     case 2:
                         catalog.display();
                         catalog=catalog.usuwanie();
-                        //dane = dane.usuwanie();
-                        //this=this.usuwanie();
-                        //system("cls");
                         break;
                     case 3:
-                        //dane = dane.czyszczenie();
                         catalog=catalog.czyszczenie();
-                        //system("cls");
                         break;
                     case 4:
                         catalog.display();
                         System.out.println("Ktory album chcesz modyfikowac?");
+                        while (!input.hasNextInt())
+                        {
+                            System.out.println("Wprowadz liczbe!");
+                            input.next();
+                        }
                         b=input.nextInt();
                         while (b>catalog.dlugosc()||b<1)
                         {
-                            //getZnakDlError();
-                            //Sleep(1000);
-                            //cin.clear();
-                            //cin.sync();
                             System.out.println("Ktory album chcesz modyfikowac?");
+                            while (!input.hasNextInt())
+                            {
+                                System.out.println("Wprowadz liczbe!");
+                                input.next();
+                            }
                             b=input.nextInt();
                         }
                         catalog.mod(catalog.get_value(b - 1).modyfikacja(), b-1);
-                        //Sleep(1000);
-                        //system("cls");
                         break;
                     case 5:
                         catalog.display();
                         catalog.wstawianie();
-                        //Sleep(1000);
-                        //system("cls");
                         break;
                     case 6:
                         catalog.wstawianietab();
-                        //Sleep(1000);
-                        //system("cls");
                         break;
                     case 7:
                         catalog.wszysukiwaniek();
-                        //Sleep(1000);
-                        //system("cls");
                         break;
                     /*case 8:
                         dane.zapis();
@@ -598,19 +438,14 @@ public class Katalog {
                         break;*/
                     case 10:
                         catalog.display();
-                        //Sleep(3000);
-                        //system("cls");
                         break;
                     case 0:
                         break;
                     default:
-                        //getZlaOpcja();
-                        //Sleep(1000);
-                        //system("cls");
+                        System.out.println("Nie ma takiej opcji!");
                         break;
                 }
             }
-            //system("cls");
         return catalog;
         }
 }

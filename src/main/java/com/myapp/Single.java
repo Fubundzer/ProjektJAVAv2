@@ -25,19 +25,7 @@ public class Single extends Plyta{
         autor = a;
         tytul = t;
         gatunek = g;
-        //ilosc_p = ip;
         data = d;
-        /*for (int i = 0; i < ip; i++)
-        {
-            //lista.push_back(dodawanie());
-            try {
-                lista.addElement(dodawanie());
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                //e.printStackTrace();
-                Thread.currentThread().interrupt();
-            }
-        }*/
         rodzaj="Single";
         setLista(ip);
     }
@@ -64,8 +52,6 @@ public class Single extends Plyta{
         rodzaj="Single";
     }
 
-    //virtual void disp();
-
     Single modyfikacja()
     {
         String a;
@@ -82,74 +68,44 @@ public class Single extends Plyta{
             System.out.println("4. Modyfikacja gatunku plyty.");
             System.out.println("5. Modyfikacja listy piosenek.");
             System.out.println("0. Zakoncz modyfikacje.");
+            while (!input.hasNextInt())
+            {
+                System.out.println("Wprowadz liczbe!");
+                input.next();
+            }
             i=input.nextInt();
-			/*if (cin.fail())
-			{
-				getZnakError();
-				Sleep(1000);
-				cin.clear();
-				cin.sync();
-			}
-			else
-			{*/
             switch (i){
                 case 1:
                     System.out.println("Wprowadz nowego autora plyty:");
-                    //cin.sync();
-                    //getline(cin, a);
                     a=input2.nextLine();
                     this.autor = a;
-                    //Sleep(1000);
-                    //system("cls");
                     break;
                 case 2:
                     System.out.println("Wprowadz nowy tytul plyty:");
-                    //cin.sync();
-                    //getline(cin, tytul);
                     tytul=input2.nextLine();
-                    this.tytul = tytul;
-                    //Sleep(1000);
-                    //system("cls");
                     break;
                 case 3:
                     System.out.println("Wprowadz nowy rok wydania plyty:");
-                    data=input.nextInt();
-					/*while (cin.fail())
-					{
-						getZnakError();
-						Sleep(1000);
-						cin.clear();
-						cin.sync();
-						cout << "Wprowadz nowy rok wydania plyty:" << endl;
-						cin >> data;
-					}*/
-                    this.data = data;
-                    //Sleep(1000);
-                    //system("cls");
+                    while (!input.hasNextInt())
+                    {
+                        System.out.println("Wprowadz liczbe!");
+                        input.next();
+                    }
+                    this.data=input.nextInt();
                     break;
                 case 4:
                     System.out.println("Wprowadz nowy gatunek plyty:");
-                    //cin.sync();
-                    //getline(cin, a);
                     a=input2.nextLine();
                     this.gatunek = a;
-                    //Sleep(1000);
-                    //system("cls");
                     break;
                 case 5:
                     this.lista = modyfikacjalisty();
-                    //Sleep(1000);
-                    //system("cls");
                     break;
                 case 0:
                     System.out.println("Powrot do menu.");
-                    //Sleep(1000);
-                    //system("cls");
                     break;
                 default:
-                    //getZlaOpcja();
-                    //Sleep(1000);
-                    //system("cls");
+                    System.out.println("Nie ma takiej opcji!");
                     break;
             }
         }
@@ -162,7 +118,6 @@ public class Single extends Plyta{
         return rodzaj;
     }
 
-    //bool operator ==(const Longplay &l);
 
     Vector<Piosenka> modyfikacjalisty()
     {
@@ -171,101 +126,84 @@ public class Single extends Plyta{
         Scanner input = new Scanner(System.in);
         while (i != 0)
         {
-            //system("cls");
             System.out.println("Co chcesz zrobic?");
             System.out.println("1. Dodac piosenke.");
             System.out.println("2. Usunac piosenke.");
             System.out.println("3. Zmodyfikowac piosenke.");
             System.out.println("0. Zakonczyc modyfikacje.");
+            while (!input.hasNextInt())
+            {
+                System.out.println("Wprowadz liczbe!");
+                input.next();
+            }
             i=input.nextInt();
-			/*if (cin.fail())
-			{
-				getZnakError();
-				Sleep(1000);
-				cin.clear();
-				cin.sync();
-			}
-			else
-			{*/
             switch (i)
             {
                 case 1:
-                    //this->lista.push_back(dodawanie());
-                    // try
-                    // {
                     lista.addElement(dodawanie());
-                    // }
-                    // catch (InterruptedException e)
-                    // {
-                    //     Thread.currentThread().interrupt();
-                    //}
                     ilosc_p++;
-                    //Sleep(1000);
-                    //system("cls");
                     break;
                 case 2:
                     if (ilosc_p == 0)
                     {
-                        //getBrakPzError();
-                        //Sleep(1000);
+                        System.out.println("Lista piosenek jest pusta");
                     }
                     else
                     {
                         System.out.println("Ktora piosenke chcesz usunac?");
                         wypisywaniep();
+                        while (!input.hasNextInt())
+                        {
+                            System.out.println("Wprowadz liczbe!");
+                            input.next();
+                        }
                         j=input.nextInt();
                         while (j > ilosc_p || j < 1)
                         {
-                            //getZnakDlError();
-                            //Sleep(1000);
-                            //cin.clear();
-                            //cin.sync();
-                            System.out.println("Ktora piosenke chcesz usunac?");
+                            System.out.println("Nie ma piosenki o takim numerze, sprobuj jeszcze raz.");
+                            while (!input.hasNextInt())
+                            {
+                                System.out.println("Wprowadz liczbe!");
+                                input.next();
+                            }
                             j=input.nextInt();
                         }
-                        //this->lista.erase(lista.begin() + j - 1);
-                        //this->ilosc_p--;
                         lista.remove(j-1);
                         ilosc_p--;
                     }
-                    //Sleep(1000);
-                    //system("cls");
                     break;
                 case 3:
                     System.out.println("Ktora piosenke chcesz zmodyfikowac?");
                     wypisywaniep();
+                    while (!input.hasNextInt())
+                    {
+                        System.out.println("Wprowadz liczbe!");
+                        input.next();
+                    }
                     j=input.nextInt();
                     while (j>ilosc_p||j<1)
                     {
-                        //getZnakDlError();
-                        //Sleep(1000);
-                        //cin.clear();
-                        //cin.sync();
-                        System.out.println("Ktora piosenke chcesz zmodyfikowac?");
+                        System.out.println("Nie ma piosenki o takim numerze, sprobuj jeszcze raz.");
+                        while (!input.hasNextInt())
+                        {
+                            System.out.println("Wprowadz liczbe!");
+                            input.next();
+                        }
                         j=input.nextInt();
                     }
                     a = lista.get(j-1).modyfikacja();
                     modl(j - 1, a);
-                    //Sleep(1000);
-                    //system("cls");
                     break;
                 case 0:
                     System.out.println("Zakonczono modyfikacje");
-                    //Sleep(1000);
-                    //system("cls");
                     break;
                 default:
-                    //getZlaOpcja();
-                    //Sleep(1000);
-                    //system("cls");
+                    System.out.println("Nie ma takiej opcji");
                     break;
             }
         }
-        //}
         return lista;
     }
-
-    //bool iloscp(int i){ return true; };
 
     Boolean dlplyty(int i)
     {
@@ -295,6 +233,11 @@ public class Single extends Plyta{
             {
                 ilosc_p++;
                 lista.addElement(dodawanie());
+                if(dlplyty(i))
+                {
+                    dlplyty(2);
+                    break;
+                }
             }
         }
     }
