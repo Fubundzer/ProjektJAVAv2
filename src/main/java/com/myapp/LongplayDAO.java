@@ -155,7 +155,7 @@ public class LongplayDAO {
             {
                 str="insert into extendedplay (idextendedplay,autor,tytul,gatunek,ilosc_p,data) values ('"+(j+1)+"','"+k2.getDane().get(j).getAutor()+
                         "','"+k2.getDane().get(j).getTytul()+"','"+k2.getDane().get(j).getGatunek()+"','"+k2.getDane().get(j).getIloscp()+
-                        "','"+k2.getDane().get(j).getRok()+"')";
+                        "','"+k2.getDane().get(j).getRok()+"','"+k1.getDane().get(j).getTyp()+"')";
                 myStmt.executeUpdate(str);
                 k=k2.getDane().get(j).getIloscp();
                 for(int l=0;l<k;l++)
@@ -177,7 +177,7 @@ public class LongplayDAO {
             {
                 str="insert into single (idsingle,autor,tytul,gatunek,ilosc_p,data) values ('"+(j+1)+"','"+k3.getDane().get(j).getAutor()+
                         "','"+k3.getDane().get(j).getTytul()+"','"+k3.getDane().get(j).getGatunek()+"','"+k3.getDane().get(j).getIloscp()+
-                        "','"+k3.getDane().get(j).getRok()+"')";
+                        "','"+k3.getDane().get(j).getRok()+"','"+k1.getDane().get(j).getTyp()+"')";
                 myStmt.executeUpdate(str);
                 k=k3.getDane().get(j).getIloscp();
                 for(int l=0;l<k;l++)
