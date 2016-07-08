@@ -323,7 +323,9 @@ public class Katalog {
     Plyta dodawaniavec()
     {
         Plyta a= factory.makePlyta(typ);
+        int k=1;
         Scanner input = new Scanner(System.in);
+        Scanner input2 = new Scanner(System.in);
         String autor, tytul,gatunek;
         int ilosc_p, data,i=0;
         System.out.println("Podaj autora plyty: ");
@@ -332,6 +334,32 @@ public class Katalog {
         tytul=input.nextLine();
         System.out.println("Podaj gatunek plyty: ");
         gatunek=input.nextLine();
+        System.out.println("Podaj nosnik plyty: ");
+        while(k!=0)
+        {
+            System.out.println("1. Winyl. ");
+            System.out.println("2. CD.");
+            while (!input2.hasNextInt())
+            {
+                System.out.println("Wprowadz liczbe!");
+                input2.next();
+            }
+            k=input2.nextInt();
+            switch(k)
+            {
+                case 1:
+                    a.wstawTyp("w");
+                    k=0;
+                    break;
+                case 2:
+                    a.wstawTyp("c");
+                    k=0;
+                    break;
+                default:
+                    System.out.println("Nie ma takiej opcji!");
+                    break;
+            }
+        }
         System.out.println("Podaj ilosc piosenek: ");
         while (!input.hasNextInt())
         {

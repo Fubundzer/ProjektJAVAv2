@@ -10,6 +10,19 @@ import java.sql.Statement;
  */
 public class LongplayDAO {
 
+    private static LongplayDAO firstInstance=null;
+
+    private LongplayDAO(){};
+
+    public static LongplayDAO getInstance()
+    {
+        if (firstInstance==null)
+        {
+            firstInstance=new LongplayDAO();
+        }
+        return firstInstance;
+    }
+
     public void load(Katalog k1,Katalog k2,Katalog k3)
     {
         try{
@@ -33,6 +46,7 @@ public class LongplayDAO {
                 a.setGatunek(myRs.getString("gatunek"));
                 a.setIlosc_p(myRs.getInt("ilosc_p"));
                 a.setData(myRs.getInt("data"));
+                a.wstawTyp(myRs.getString("typ"));
                 i = myRs.getInt("idlongplay");
                 myRs2 = myStmt2.executeQuery("SELECT longplay_p.* FROM longplay,longplay_p Where longplay.idlongplay=longplay_p.idlongplay AND longplay.idlongplay="+i);
                 while(myRs2.next())
@@ -56,6 +70,7 @@ public class LongplayDAO {
                 a.setGatunek(myRs.getString("gatunek"));
                 a.setIlosc_p(myRs.getInt("ilosc_p"));
                 a.setData(myRs.getInt("data"));
+                a.wstawTyp(myRs.getString("typ"));
                 i = myRs.getInt("idextendedplay");
                 myRs2 = myStmt2.executeQuery("SELECT extendedplay_p.* FROM extendedplay,extendedplay_p Where extendedplay.idextendedplay=extendedplay_p.idextendedplay AND extendedplay.idextendedplay="+i);
                 while(myRs2.next())
@@ -78,6 +93,7 @@ public class LongplayDAO {
                 a.setGatunek(myRs.getString("gatunek"));
                 a.setIlosc_p(myRs.getInt("ilosc_p"));
                 a.setData(myRs.getInt("data"));
+                a.wstawTyp(myRs.getString("typ"));
                 i = myRs.getInt("idsingle");
                 myRs2 = myStmt2.executeQuery("SELECT single_p.* FROM single,single_p Where single.idsingle=single_p.idsingle AND single.idsingle="+i);
                 while(myRs2.next())
@@ -115,9 +131,9 @@ public class LongplayDAO {
             String str,str2;
             for(int j=0;j<i;j++)
             {
-                str="insert into longplay (idlongplay,autor,tytul,gatunek,ilosc_p,data) values ('"+(j+1)+"','"+k1.getDane().get(j).getAutor()+
+                str="insert into longplay (idlongplay,autor,tytul,gatunek,ilosc_p,data,typ) values ('"+(j+1)+"','"+k1.getDane().get(j).getAutor()+
                         "','"+k1.getDane().get(j).getTytul()+"','"+k1.getDane().get(j).getGatunek()+"','"+k1.getDane().get(j).getIloscp()+
-                        "','"+k1.getDane().get(j).getRok()+"')";
+                        "','"+k1.getDane().get(j).getRok()+"','"+k1.getDane().get(j).getTyp()+"')";
                 myStmt.executeUpdate(str);
                 k=k1.getDane().get(j).getIloscp();
                 for(int l=0;l<k;l++)

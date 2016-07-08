@@ -20,7 +20,7 @@ public class catalogMain extends JFrame{
         int a = 1;
         Clear c=new Clear();
 
-        LongplayDAO b = new LongplayDAO();
+        LongplayDAO b = LongplayDAO.getInstance();
 
 
         while (a != 0)

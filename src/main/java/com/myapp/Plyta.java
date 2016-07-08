@@ -11,6 +11,35 @@ public abstract class Plyta {
     int ilosc_p, data;
     Vector<Piosenka> lista = new Vector<Piosenka>();
     Clear c=new Clear();
+    public TypPlyty typ;
+
+    public String pokazTypPlyty()
+    {
+        return typ.typ();
+    }
+
+    public void setTypPlyty(TypPlyty typ)
+    {
+        this.typ=typ;
+    }
+
+    public void wstawTyp(String w)
+    {
+        if(w.equals("w"))
+            typ=new Winyl();
+        else if(w.equals("c"))
+            typ=new CD();
+    };
+
+    public String getTyp()
+    {
+        if (typ.typ().equals("Winyl"))
+        return "w";
+        else if(typ.typ().equals("CD"))
+            return "c";
+        else
+            return "";
+    }
 
     Piosenka dodawanie()
     {
@@ -166,6 +195,7 @@ public abstract class Plyta {
         System.out.println("Gatunek: "+gatunek);
         System.out.println("Rodzaj: "+rodzaj);
         System.out.println("Ilosc piosenek: "+ilosc_p);
+        System.out.println("Rodzja nosnika:"+typ.typ());
         dlugosc();
     }
 
